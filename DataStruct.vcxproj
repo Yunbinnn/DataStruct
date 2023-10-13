@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataStruct.cpp" />
-    <ClCompile Include="SingleLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoubleLinkedList.h" />

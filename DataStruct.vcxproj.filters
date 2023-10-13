@@ -18,9 +18,6 @@
     <ClCompile Include="DataStruct.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SingleLinkedList.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SingleLinkedList.h">
