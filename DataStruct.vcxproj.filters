@@ -44,5 +44,8 @@
     <ClInclude Include="using_std.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Linear_Queue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
