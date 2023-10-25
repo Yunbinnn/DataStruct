@@ -1,36 +1,24 @@
 ﻿#include "using_std.h"
+#include "CircleQueue.h"
 
 int main()
 {
-#pragma region 계수 정렬
-	// 데이터의 값을 직접 비교하지 않고, 단순하게 각 숫자가
-	// 몇개 있는지 갯수를 세어 저장한 다음 정렬하는 알고리즘입니다.
+#pragma region 원형 큐
+	// 물리적으로는 선형 구조를 가지고 있으며,
+	// 큐의 시작점과 끝점을 연결한 큐입니다.
 
-	// 시간 복잡도 : O(n + k)
+	CircleQueue<int> cQueue;
 
-	int count[5] = { 0, };
-	int data[20] =
-	{
-	   1,2,4,4,2,
-	   5,5,3,3,1,
-	   2,3,1,5,4,
-	   2,3,3,5,4
-	};
+	cQueue.Enqueue(10);
+	cQueue.Enqueue(20);
+	cQueue.Enqueue(30);
+	
+	cQueue.Display();
 
-	for (int i = 0; i < 20; i++)
-	{
-		count[data[i] - 1]++;
-	}
-
-	for(int i=0;i<5;i++)
-		if (count[i] != 0)
-		{
-			for (int j = 0; j < count[i]; j++)
-				cout << i + 1 << " ";
-		}
+	cout << "\nCircle Queue의 Front : " << cQueue.Front() << endl;
+	cout << "Circle Queue의 Back : " << cQueue.Back() << endl;
 
 #pragma endregion
-
 
 	return 0;
 }
