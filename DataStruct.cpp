@@ -1,24 +1,26 @@
 ﻿#include "using_std.h"
-#include "CircleQueue.h"
+#include "STL_Vector.h"
 
 int main()
 {
-#pragma region 원형 큐
-	// 물리적으로는 선형 구조를 가지고 있으며,
-	// 큐의 시작점과 끝점을 연결한 큐입니다.
+	STL_VECTOR<int> sVector;
 
-	CircleQueue<int> cQueue;
+	for (int i = 0; i < 11; i++)
+		sVector.Push_Back(i + 1);
 
-	cQueue.Enqueue(10);
-	cQueue.Enqueue(20);
-	cQueue.Enqueue(30);
-	
-	cQueue.Display();
+	cout << "Vector의 Size : " << sVector.Size() << endl;
 
-	cout << "\nCircle Queue의 Front : " << cQueue.Front() << endl;
-	cout << "Circle Queue의 Back : " << cQueue.Back() << endl;
+	cout << "Vector의 Capacity : " << sVector.Capacity() << endl;
 
-#pragma endregion
+	for (int i = 0; i < 5; i++)
+		sVector.Pop_Back();
+
+	cout << "Vector의 Size : " << sVector.Size() << endl;
+
+	cout << "Vector의 Front : " << sVector.Front() << endl;
+	cout << "Vector의 Back : " << sVector.Back() << endl;
+	cout << "Vector의 Begin : " << sVector.Begin() << endl;
+	cout << "Vector의 End : " << sVector.End() << endl;
 
 	return 0;
 }
