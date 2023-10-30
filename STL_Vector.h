@@ -17,40 +17,19 @@ public:
 		bufferPointer = nullptr;
 	}
 
-	int Size()
-	{
-		return size;
-	}
-	
-	int Capacity()
-	{
-		return capacity;
-	}
+	int& Size() { return size; }
 
-	T& Front() 
-	{
-		return bufferPointer[0];
-	}
+	int Capacity() { return capacity; }
 
-	T& Back()
-	{
-		return bufferPointer[size - 1];
-	}
+	T& Front() { return bufferPointer[0]; }
 
-	T* Begin()
-	{
-		return bufferPointer;
-	}
+	T& Back() { return bufferPointer[size - 1]; }
 
-	T* End()
-	{
-		return bufferPointer + size;
-	}
+	T* Begin() { return bufferPointer; }
 
-	bool IsFull()
-	{
-		return size >= capacity ? true : false;
-	}
+	T* End() { return bufferPointer + size; }
+
+	bool IsFull() { return size >= capacity ? true : false; }
 
 	void Resize(int newSize)
 	{
@@ -66,6 +45,13 @@ public:
 		bufferPointer = tempBuffer;
 	}
 
+	void Reserve(int newSize)
+	{
+		if (newSize < capacity) return;
+
+		Resize(newSize);
+	}
+
 	void Push_Back(T data)
 	{
 		if (capacity == 0) Resize(1);
@@ -78,15 +64,9 @@ public:
 		bufferPointer[size++] = data;
 	}
 
-	void Pop_Back()
-	{
-		size = size > 0 ? size - 1 : 0;
-	}
+	void Pop_Back() { size = size > 0 ? size - 1 : 0; }
 
-	T& operator[](const int value) { return bufferSize[value]; }
+	T& operator[](const int& value) { return bufferPointer[value]; }
 
-	~STL_VECTOR()
-	{
-		delete[] bufferPointer;
-	}
+	~STL_VECTOR() { delete[] bufferPointer; }
 };
