@@ -135,6 +135,7 @@
     <ClInclude Include="BubbleSort.h" />
     <ClInclude Include="CircleLinkedList.h" />
     <ClInclude Include="CircleQueue.h" />
+    <ClInclude Include="CompleteBinaryTree.h" />
     <ClInclude Include="CountingSort.h" />
     <ClInclude Include="DoubleLinkedList.h" />
     <ClInclude Include="InsertSort.h" />

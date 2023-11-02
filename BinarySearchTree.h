@@ -23,7 +23,7 @@ public:
 
 	Node* GetRoot() const { return rootNode; }
 
-	Node* Insert(T data, Node* root)
+	Node* Insert(Node* root, T data)
 	{
 		if (Find(root, data))
 		{
@@ -38,15 +38,47 @@ public:
 			root->left = nullptr;
 			root->right = nullptr;
 		}
-		else if (root->data > data) root->left = Insert(data, root->left);
-		else if (root->data < data) root->right = Insert(data, root->right);
+		else if (root->data > data) root->left = Insert(root->left, data);
+		else if (root->data < data) root->right = Insert(root->right, data);
 
 		return root;
 	}
 
-	Node* Delete(T data, Node* root)
+	Node* RemoveNode(Node* root, T data)
 	{
 		if (root == nullptr) return root;
+
+		if (root->data > data) root->left = RemoveNode(root->left, data);
+		else if (root->data < data) root->right = RemoveNode(root->right, data);
+		else
+		{
+			Node* currentNode;
+
+			// 자식이 하나 이거나 없는 경우
+			if (root->left == nullptr)
+			{
+				currentNode = root->right;
+				delete root;
+				return currentNode;
+			}
+			else if (root->right == nullptr)
+			{
+				currentNode = root->left;
+				delete root;
+				return currentNode;
+			}
+
+			// 자식이 둘 있는 경우
+			currentNode = MinValueNode(root->right);
+
+			// 삭제할 노드의 데이터를 넣어줍니다.
+			root->data = currentNode->data;
+			
+			// 노드를 삭제합니다.
+			root->right = RemoveNode(root->right, currentNode->data);
+		}
+
+		return root;
 	}
 
 	bool Find(Node* root, T data)
@@ -91,6 +123,15 @@ public:
 			cout << root->data << " ";
 			Inorder(root->right);
 		}
+	}
+
+	Node* MinValueNode(Node* root)
+	{
+		Node* currentNode = root;
+
+		if (currentNode->left != nullptr) return MinValueNode(currentNode->left);
+
+		return currentNode;
 	}
 };
 
