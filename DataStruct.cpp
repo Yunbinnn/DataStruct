@@ -1,6 +1,6 @@
 ﻿#include "using_std.h"
 #include "BinarySearchTree.h"
-#include "CompleteBinaryTree.h"
+#include "MaxHeap.h"
 
 int main()
 {
@@ -26,22 +26,28 @@ int main()
 
 #pragma endregion
 
-#pragma region 완전 이진 트리(CBT)
+#pragma region 최대 힙(Max Heap)
 
-	CompleteBinaryTree<int> cbt;
+	/*MaxHeap<int> mHeap;
 
-	cbt.Insert(13);
-	cbt.Insert(15);
-	cbt.Insert(20);
-	cbt.Insert(30);
-	cbt.Insert(50);
+	mHeap.Insert(30);
+	mHeap.Insert(40);
+	mHeap.Insert(15);
+	mHeap.Insert(31);
+	mHeap.Insert(55);
 
-	cout << "\nDelete 하기 전 : ";
-	cbt.Display();
+	cout << "\nDelete 전 : ";
+	mHeap.Display();
 
-	cbt.Delete();
+	mHeap.Delete();
 	cout << "\nDelete 후 : ";
-	cbt.Display();
+	mHeap.Display();*/
+
+#pragma endregion
+
+#pragma region 해시 테이블
+
+
 
 #pragma endregion
 

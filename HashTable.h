@@ -1,0 +1,61 @@
+#pragma once
+#include "using_std.h"
+#include <string>
+
+#pragma region 해시 테이블
+	// (key, value)로 데이터를 저장하는 자료 구조 중 하나로
+	// 빠르게 데이터를 검색할 수 있는 자료 구조입니다.
+
+	// 해시 테이블의 평균 시간 복잡도는 O(1)입니다.
+
+	// 해시 충돌을 해결하는 방법
+	 
+	// <체이닝 기법>
+	// 각 해시 버킷을 연결 리스트로 구성하는 방식입니다.
+	
+	// 해시 충돌 발생 시 동일한 해시 값에 해당하는 데이터들을
+	// 연결 리스트로 연결하여 저장합니다.
+
+	// <개방 주소법>
+	// 충돌 발생 시 빈 버킷에 데이터를 저장하는 방식입니다.
+	
+	// 빈 버킷을 어떻게 결정할 지에 따라 구현 방식이 달라집니다.
+	
+	// 선형 탐사 : 충돌 발생 시 앞에서 부터 차례대로 빈 버킷을 찾아
+	// 값을 저장하는 방식입니다.
+
+	// 이차 탐사 : 충돌 발생시 2^, 2^3 만큼 떨어진 빈 버킷을 찾아
+	// 값을 저장하는 방식입니다.
+
+	// 이중 해싱 : 해시 값을 한번 더 해시 함수에 넣어 다른 함수를
+	// 도출하는 방식입니다.
+	
+#pragma endregion
+
+template<typename T, typename V>
+class Node
+{
+private:
+	T key;
+	V value;
+	Node<T, V>* next;
+	Node(T key, V value) : key(key), value(value) {}
+};
+
+template<typename T, typename V>
+class HashTable
+{
+private:
+	int size;
+	Node<T, V>* head;
+
+public:
+
+	HashTable()
+	{
+		size = 0;
+		head = nullptr;
+	}
+
+	bool IsEmpty() const { return size <= 0 ? true : false; }
+};
