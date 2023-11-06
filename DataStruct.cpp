@@ -1,6 +1,7 @@
 ﻿#include "using_std.h"
 #include "BinarySearchTree.h"
 #include "MaxHeap.h"
+#include "HashTable.h"
 
 int main()
 {
@@ -47,7 +48,7 @@ int main()
 
 #pragma region 해시 테이블
 
-
+	HashTable<char, int>  hTable;
 
 #pragma endregion
 
