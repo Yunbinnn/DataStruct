@@ -48,7 +48,15 @@ int main()
 
 #pragma region 해시 테이블
 
-	HashTable<char, int>  hTable;
+	HashTable<string, int>  hTable;
+
+	hTable.Insert("ABC", 100);
+	hTable.Insert("DEF", 200);
+	hTable.Insert("GHI", 300);
+	hTable.Insert("JKL", 400);
+	hTable.Insert("MNO", 500);
+
+	hTable.Display();
 
 #pragma endregion
 

@@ -1,7 +1,8 @@
 #pragma once
 #include "using_std.h"
+#include <string>
 
-constexpr auto SIZE = 5;
+#define SIZE 5 
 
 #pragma region 해시 테이블
 // (key, value)로 데이터를 저장하는 자료 구조 중 하나로
@@ -33,14 +34,14 @@ constexpr auto SIZE = 5;
 
 #pragma endregion
 
-template<typename T, typename V>
+template<typename KEY, typename VALUE>
 class HashTable
 {
 private:
 	struct Node
 	{
-		T key;
-		V value;
+		KEY key;
+		VALUE value;
 		Node* next;
 	};
 
@@ -62,9 +63,18 @@ public:
 			bucket[i].head = nullptr;
 		}
 	}
-
+	
+	template<typename T>
 	int HashFunc(T key)
 	{
+		int hashIndex = (int)key % SIZE;
+
+		return hashIndex;
+	}
+
+	template<>
+	int HashFunc(string key) 
+	{ 
 		int sumValue = 0;
 
 		for (const char& element : key) sumValue += (int)element;
@@ -73,8 +83,8 @@ public:
 
 		return hashIndex;
 	}
-	
-	Node* CreateNode(T key, V value)
+
+	Node* CreateNode(KEY key, VALUE value)
 	{
 		Node* newNode = new Node;
 
@@ -85,7 +95,7 @@ public:
 		return newNode;
 	}
 
-	void Insert(T key, V value)
+	void Insert(KEY key, VALUE value)
 	{
 		// 해시 함수를 통해서 값을 받는 임시 변수
 		int hashIndex = HashFunc(key);
@@ -112,6 +122,72 @@ public:
 
 			// 3. bucket[hashIndex].count의 값을 증가시킵니다.
 			bucket[hashIndex].count++;
+		}
+	}
+
+	void Remove(KEY key)
+	{
+		// 1. 해시 함수를 통해서 값을 받는 임시 변수
+		int hashIndex = HashFunc(key);
+
+		// 2. 노드를 탐색할 수 있는 순회용 포인터 변수 선언
+		//    각 버킷의 head를 저장합니다.
+		Node* currentNode = bucket[hashIndex];
+																  
+		// 3. 이전 노드를 저장할 수 있는 포인터 변수 선언
+		Node* traceNode = nullptr;
+
+		// 4. currentNode가 nullptr이라고 하면 함수를 종료합니다.
+		if (currentNode == nullptr)
+		{
+			cout << "해시 테이블이 비어 있습니다." << endl;
+			return;
+		}
+
+		// 5. currentNode를 이용해서 내가 찾고자 하는 key 값을 찾으면 됩니다.
+		while (currentNode != nullptr)
+		{
+			// currentNode->key 값과 내가 삭제하고 싶은 key값이 같다면
+			if (currentNode->key == key)
+			{
+				if (currentNode == bucket[hashIndex].head)
+				{
+					bucket[hashIndex].head = currentNode->next;
+				}
+				else
+				{
+					traceNode->next = currentNode->next;
+				}
+
+				// 각 버킷의 카운트를 감소 시킵니다.
+				bucket[hashIndex].count--;
+
+				// 해당 메모리를 삭제합니다
+				delete currentNode;
+
+				return;
+			}			   
+
+			traceNode = currentNode;
+			currentNode = currentNode->next;
+		}
+
+		cout << "키를 찾을 수 없습니다." << endl;
+	}	
+
+	void Display()
+	{
+		for (int i = 0; i < SIZE; i++)
+		{
+			Node* currentNode = bucket[i].head;
+
+			while (currentNode !=nullptr)
+			{
+				cout << "[" << i << "]" << "KEY : " << currentNode->key << endl;
+				cout << "[" << i << "]" << "VALUE : " << currentNode->value << endl;
+				currentNode = currentNode->next;
+			}
+			cout << endl;
 		}
 	}
 };
